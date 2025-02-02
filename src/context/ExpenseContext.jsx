@@ -1,11 +1,9 @@
 import { createContext, useReducer, useContext } from "react";
 
-// Initial State
 const initialState = {
   transactions: [],
 };
 
-// Reducer Function
 const expenseReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TRANSACTION":
@@ -25,19 +23,15 @@ const expenseReducer = (state, action) => {
   }
 };
 
-// Create Context
 const ExpenseContext = createContext();
 
-// Provider Component
 export const ExpenseProvider = ({ children }) => {
   const [state, dispatch] = useReducer(expenseReducer, initialState);
 
-  // Add Transaction
   const addTransaction = (transaction) => {
     dispatch({ type: "ADD_TRANSACTION", payload: transaction });
   };
 
-  // Delete Transaction
   const deleteTransaction = (id) => {
     dispatch({ type: "DELETE_TRANSACTION", payload: id });
   };
